@@ -6,10 +6,11 @@ import { Body, Controller, Get, HttpCode, Post, UseGuards } from '@nestjs/common
 
 import { Public } from '../auth/public.decorator';
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import { Authorize } from '../auth/authorize.decorator';
 
 @Controller('/users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Public()
   @Post()
@@ -19,6 +20,7 @@ export class UsersController {
   }
 
   @ApiResponse({ type: UserDto, isArray: true })
+  @Authorize(['view_users'])  // Exige a permissão "view_users"
   @Get()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()

@@ -1,6 +1,6 @@
 export const ValidationMessages = {
   User: {
-    IsValidCPF: `'$property' precisa ser um CPF válido.`,
+    IsValidCPF: `'$property' precisa ser um CPF válido.`
   } as const,
   System: {
     Allow: ``,
